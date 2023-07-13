@@ -1,10 +1,18 @@
-#include <stdio.h>
 /*
-* main - a simple program to print a message with puts function 
-* returns - 0 (success)
-*/
+ * File: 4-puts.c
+ */
+
+#include <stdio.h>
+
+/**
+ * main - Prints "Programming is like building a multilingual
+ *                puzzle, followed by a new line.
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
- puts("\"Programming is like building a multilingual puzzle");
- return (0);
+	puts("\"Programming is like building a multilingual puzzle");
+
+	return (0);
 }
