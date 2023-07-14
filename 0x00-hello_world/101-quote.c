@@ -2,9 +2,7 @@
  * File: 101-quote.c
  */
 
-
 #include <unistd.h>
-
 
 /**
  * main - a simple program to print a message without using the printf or puts
