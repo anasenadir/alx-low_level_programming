@@ -16,14 +16,20 @@ void print_triangle(int size)
 
         for(row = 1; row <= size; row++)
         {
-            for (col = 1; col <= size; col++)
-            {
-                if(col + row >= size){
-                    _putchar('#');
-                    continue;
-                }
-                _putchar(' ');
-            }
+            // for (col = 1; col <= size; col++)
+            // {
+            //     if(col + row >= size){
+            //         _putchar('#');
+            //         continue;
+            //     }
+            //     _putchar(' ');
+            // }
+
+            for (col = row; col < size; col++)
+				_putchar(' ');
+
+			for (col = 1; col <= row; col++)
+				_putchar('#');
             _putchar('\n');
         }
     }
