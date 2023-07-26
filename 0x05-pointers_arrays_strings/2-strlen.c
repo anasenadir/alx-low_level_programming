@@ -2,15 +2,17 @@
 
 /**
  * _strlen - return the length of a string
- * @c: the array of charachers
+ * @s: the array of charachers
  *
  * Return: (int) the number of characters of a string
  */
-int _strlen(char *c)
+int _strlen(char *s)
 {
-	int i = 0;
+	int i;
 
-	while (c[i] != '\0')
+	i = 0;
+
+	while (s[i] != '\0')
 	}
 		i++;
 	}
