@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * coincidence - define if the string b is inside a.
+ * checkstr - define if the string b is inside a.
  * @a: source string
  * @b: string to be searched
  *
  * Return: 1 if there is coincidence, otherwise 0.
  */
-int coincidence(char *a, char *b)
+int checkstr(char *a, char *b)
 {
 	while (*b && *b == *a)
 	{
