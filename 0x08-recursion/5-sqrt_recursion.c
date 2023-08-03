@@ -1,41 +1,22 @@
 #include "main.h"
 
+
 /**
- * _sqrt_helper - performs a binary search to find the
- * natural square root of the number
- * @n: the number  and
- * @low: a lower bound (initially 0).
- * @high: an upper bound (initially the number itself).
+ * sqrt2 - Makes possible to evaluate from 1 to n
+ * @a: same number as n
+ * @b: number that iterates from 1 to n
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _sqrt_helper(int n, int low, int high)
+int sqrt2(int a, int b)
 {
-	int mid, square;
-
-	if (low > high)
-	{
+	if (b * b == a)
+		return (b);
+	else if (b * b > a)
 		return (-1);
-	}
-	
-	mid = low + (high - low) / 2;
-	square = mid * mid;
-
-	if (square == n)
-	{
-		return (mid);
-	}
-	else if (square < n)
-	{
-		return (_sqrt_helper(n, mid + 1, high));
-	}
-	else
-	{
-		return (_sqrt_helper(n, low, mid - 1));
-	}
+	return (sqrt2(a, b + 1));
 }
-
 /**
  * _sqrt_recursion - returns the natural square root of n
  * @n: Number Integer
@@ -45,10 +26,5 @@ int _sqrt_helper(int n, int low, int high)
  */
 int _sqrt_recursion(int n)
 {
-	if (n < 0)
-	{
-		return (-1);
-	}
-
-	return (_sqrt_helper(n, 0, n));
+	return (sqrt2(n, 1));
 }
