@@ -30,7 +30,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 	else
 	{
-		if(old_size > new_size)
+		if (old_size > new_size)
 			min_size = new_size;
 		else
 			min_size = old_size;
