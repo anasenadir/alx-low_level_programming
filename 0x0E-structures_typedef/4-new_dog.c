@@ -70,7 +70,7 @@ int _strlen(char *s)
 }
 
 /**
-  * _strcpy - Copy a string
+  * _copystr - Copy a string
   * @dest: Destination value
   * @src: Source value
   *
