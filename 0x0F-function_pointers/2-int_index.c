@@ -1,4 +1,5 @@
 #include "function_pointers.h"
+
 /**
  * int_index - this functions find the index of a int
 (* a blank line
