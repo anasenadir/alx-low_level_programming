@@ -14,7 +14,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 
 	a_len = sizeof(n1);
 	b_len = sizeof(n2);
-	biggest = e_len > b_len ? a_len : b_len;
+	biggest = a_len > b_len ? a_len : b_len;
 	if ((biggest + 1) >= size_r)
 		return (0);
 	r[biggest + 1] = '\0';
