@@ -1,6 +1,6 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
 
 /**
  * **alloc_grid - function to allocate memory to grid
@@ -10,39 +10,32 @@
  */
 int **alloc_grid(int width, int height)
 {
-	int **ptr, i, j; 
+	int x, y;
+	int **ptr;
 
 	if (width <= 0 || height <= 0)
-		return (NULL);
-
-	ptr = (int **) malloc( width * height * sizeof(int));
-
+	{
+		return  (NULL);
+	}
+	ptr = malloc(height * sizeof(int *));
 	if (ptr == NULL)
-		return (NULL);
-
-	for (i = 0; i < height; i++)
 	{
-		int *c_ptr;
-		c_ptr = (int *) malloc(width * sizeof(int));
-
-		if (c_ptr == NULL)
+		return (NULL);
+	}
+	for (x = 0; x < height; x++)
+	{
+		ptr[x] = malloc(width * sizeof(int));
+		if (ptr[x] == NULL)
 		{
-			for (j = 0; j < i; i++)
-			{
-				free(ptr[j]);
-			}
-
-		free(ptr);
-		return (NULL);
+			for (y = 0; y < x;  y++)
+				free(ptr[y]);
+			free(ptr);
+			return (NULL);
+		}
+		for (y = 0; y < width; y++)
+		{
+			ptr[x][y] = 0;
+		}
 	}
-
-	for (j = 0; j < width; j++)
-	{
-		*(c_ptr + j) = 0;
-	}
-
-	*(ptr + i) = c_ptr;
-	}
-
 	return (ptr);
 }
