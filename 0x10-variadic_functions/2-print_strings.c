@@ -11,12 +11,12 @@ void print_strings(const char *separator, const unsigned int n, ...)
 {
 	va_list ptr;
 	unsigned int i;
-	char *c_val;
+	char *sep, *c_val;
 
 	va_start(ptr, n);
 
 	if (separator == NULL || *separator == 0)
-		separator = "";
+		sep = "";
 
 
 	if (n > 0)
@@ -28,7 +28,7 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		if (c_val == NULL)
 			c_val = "nil";
 
-		printf("%s%s", separator, c_val);
+		printf("%s%s", sep, c_val);
 	}
 
 	printf("\n");
