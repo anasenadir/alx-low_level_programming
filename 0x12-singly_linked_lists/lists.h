@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdio.h>
 
-typedef unsigned int size_t;
 
 typedef struct list_s
 {
