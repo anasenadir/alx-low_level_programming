@@ -5,9 +5,9 @@
 * @str: the str pointer
 * Return: return the length
 */
-size_t _strlen(const char *str)
+int _strlen(const char *str)
 {
-	size_t len = 0;
+	int len = 0;
 
 	while (*str++)
 		len++;
@@ -28,7 +28,7 @@ size_t print_list(const list_t *h)
 	while (h)
 	{
 
-		printf("[%u] %s\n", _strlen(h->str), h->str ? h->str : "(nil)");
+		printf("[%d] %s\n", _strlen(h->str), h->str ? h->str : "(nil)");
 		h = h->next;
 		len++;
 	}
