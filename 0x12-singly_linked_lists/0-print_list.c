@@ -8,7 +8,8 @@
 int _strlen(const char *str)
 {
 	int len = 0;
-
+	if (!str)
+		return (0);
 	while (*str++)
 		len++;
 
