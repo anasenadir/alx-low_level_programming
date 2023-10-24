@@ -49,12 +49,12 @@ size_t print_listint_safe(const listint_t *head)
 				free(list);
 				return (num);
 			}
-			num++;
-			list = _r(list, num, head);
-			printf("[%p] %d\n", (void*)head, head->n);
-			head = head->next;
 		}
-		free(list);
-		return (num);
+		num++;
+		list = _r(list, num, head);
+		printf("[%p] %d\n", (void*)head, head->n);
+		head = head->next;
 	}
+	free(list);
+	return (num);
 }
