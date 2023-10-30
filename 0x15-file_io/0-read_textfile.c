@@ -14,7 +14,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	char *buffer;
 	ssize_t reads_count, check_write;
 
-	fptr = fopen(filename, "r");
+	fptr = open(filename, O_RDONLY);
 
 	if (fptr  == NULL || filename == NULL || !letters)
 	{
@@ -29,7 +29,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	reads_count = fread(buffer, sizeof(char), letters, fptr);
+	reads_count = read(buffer, letters, fptr);
 
 	check_write = write(STDOUT_FILENO, buffer, reads_count);
 
