@@ -28,11 +28,11 @@ int main(int argc, char **argv)
 	if (from_ptr == -1)
 		dprintf(STDERR_FILENO, NOREAD, file_from_name), exit(98);
 
-	to_ptr = open(file_to_name, O_CREAT | O_WRONLY, F_PERMISSIONS);
+	to_ptr = open(file_to_name, O_CREAT | O_WRONLY | O_TRUNC, F_PERMISSIONS);
 	if (to_ptr == -1)
 		dprintf(STDERR_FILENO, NOWRITE, file_to_name), exit(99);
 
-	while ((bytes = read(from_ptr, &buffer[0], READ_BUF_SIZE)))
+	while ((bytes = read(from_ptr, &buffer[0], READ_BUF_SIZE)) > 0)
 		if (write(to_ptr, &buffer[0], bytes) != bytes)
 			dprintf(STDERR_FILENO, NOWRITE, file_to_name), exit(99);
 
@@ -41,9 +41,9 @@ int main(int argc, char **argv)
 
 	from_ptr = close(from_ptr);
 	to_ptr = close(to_ptr);
-	if (!from_ptr)
+	if (from_ptr)
 		dprintf(STDERR_FILENO, NOCLOSE, from_ptr), exit(100);
-	if (!to_ptr)
+	if (to_ptr)
 		dprintf(STDERR_FILENO, NOCLOSE, to_ptr), exit(100);
 
 	return (EXIT_SUCCESS);
