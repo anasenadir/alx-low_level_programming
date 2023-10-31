@@ -7,7 +7,10 @@
 */
 ssize_t _strlen(char *str)
 {
-	ssize_t len;
+	ssize_t len = 0;
+
+	if (!str)
+		return (0);
 
 	while (*str++)
 		len++;

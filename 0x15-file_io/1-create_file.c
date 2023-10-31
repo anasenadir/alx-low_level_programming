@@ -7,7 +7,10 @@
 */
 ssize_t _strlen(char *str)
 {
-	ssize_t len;
+	ssize_t len = 0;
+
+	if (!str)
+		return (0);
 
 	while (*str++)
 		len++;
@@ -26,11 +29,11 @@ int create_file(const char *filename, char *text_content)
 	ssize_t bytes, len = _strlen(text_content);
 
 	if (!filename)
-		return (0);
+		return (-1);
 
-	fptr = open(filename, O_RDWR | O_TRUNC | O_CREAT | S_IRUSR | S_IWUSR);
+	fptr = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
 	if (fptr == -1)
-		return (0);
+		return (-1);
 
 	if (len)
 	{
