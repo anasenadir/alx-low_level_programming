@@ -11,7 +11,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fptr;
-	char buffer[BUFFER_SIZE * 8];
+	char buffer[READ_BUF_SIZE * 8];
 	ssize_t bytes;
 
 	if (!filename || !letters)
@@ -21,8 +21,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fptr == -1)
 		return (0);
 
-	bytes = read(fptr, buffer, letters);
-	bytes = write(STDOUT_FILENO, buffer, bytes);
+	bytes = read(fptr, &buffer[0], letters);
+	bytes = write(STDOUT_FILENO, &buffer[0], bytes);
 
 	close(fptr);
 	return (bytes);

@@ -5,9 +5,9 @@
 * @str: the string
 * Return: return the length of a string
 */
-ssize_t _strlen(char *str)
+int _strlen(char *str)
 {
-	ssize_t len = 0;
+	int len = 0;
 
 	if (!str)
 		return (0);
@@ -37,9 +37,7 @@ int append_text_to_file(const char *filename, char *text_content)
 		return (-1);
 
 	if (len)
-	{
-		bytes = write(fptr, text_content, len);
-	}
+        bytes = write(fptr, text_content, len);
 
 	close(fptr);
 	return (bytes == len ? 1 : -1);
