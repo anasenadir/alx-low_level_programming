@@ -21,72 +21,45 @@ void free_node(hash_node_t *node)
  * @value: the value of the new node
  * @Return: 1 if it succeeded, 0 otherwise
 */
-int hash_table_set(hash_table_t *ht, const char *key,
-				const char *value)
+int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new_node, *current, *tmp;
-	unsigned long int index;
+	hash_node_t *new;
+	char *value_copy;
+	unsigned long int index, i;
 
 	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
-	new_node = malloc(sizeof(hash_node_t));
-	if (!new_node)
+	value_copy = strdup(value);
+	if (value_copy == NULL)
 		return (0);
-
-	new_node->next = NULL;
-	new_node->key = strdup(key);
-	if (!new_node->key)
-	{
-		free(new_node);
-		return (0);
-	}
-
-	new_node->value = strdup(value);
-	if (!new_node->value)
-	{
-		free(new_node->key);
-		free(new_node);
-		return (0);
-	}
 
 	index = key_index((const unsigned char *)key, ht->size);
-
-	if (ht->array[index])
+	for (i = index; ht->array[i]; i++)
 	{
-		/* update the new_node if it is exists*/
-		if (strcmp(ht->array[index]->key, key) == 0)
+		if (strcmp(ht->array[i]->key, key) == 0)
 		{
-			current = ht->array[index];
-			new_node->next = current->next;
-			ht->array[index] = new_node;
-			free_node(current);
+			free(ht->array[i]->value);
+			ht->array[i]->value = value_copy;
 			return (1);
 		}
-		current = ht->array[index];
-		tmp = NULL;
-		/* check the other nodes to update it if exists*/
-		while (current)
-		{
-			if (strcmp(current->key, key) == 0)
-			{
-				new_node->next = current->next;
-				if (tmp)
-					tmp->next = new_node;
-				free_node(current);
-				return (1);
-			}
-			tmp = current;
-			current = current->next;
-		}
-
-		/* create the new_node if it is not exists*/
-
-		tmp = ht->array[index];
-		new_node->next = tmp;
-		ht->array[index] = new_node;
-		return (1);
 	}
-	ht->array[index] = new_node;
+
+	new = malloc(sizeof(hash_node_t));
+	if (new == NULL)
+	{
+		free(value_copy);
+		return (0);
+	}
+	new->key = strdup(key);
+	if (new->key == NULL)
+	{
+		free(new);
+		return (0);
+	}
+	new->value = value_copy;
+	new->next = ht->array[index];
+	ht->array[index] = new;
+
 	return (1);
 }
